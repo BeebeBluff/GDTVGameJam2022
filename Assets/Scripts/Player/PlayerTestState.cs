@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerTestState : PlayerBaseState
 {
     //I guess we need all of these methods to override the Abstract part of the base class.
+    private const string FREE_LOOK_NAME = "FreeLookSpeed";
 
     public PlayerTestState(PlayerStateMachine stateMachine) : base(stateMachine)
     {        //Calls base method, does all the normal stuff. But can do extra logic here that is specific to this class.
@@ -24,8 +25,15 @@ public class PlayerTestState : PlayerBaseState
 
         stateMachine.Controller.Move(movement * stateMachine.FreeLookMoveSpeed * deltaTime);
 
-        if (stateMachine.InputReader.MovementValue == Vector2.zero) { return; }
+        if (stateMachine.InputReader.MovementValue == Vector2.zero)
+        {
+            stateMachine.Animator.SetFloat(FREE_LOOK_NAME, 0, .1f, deltaTime);
+            return;
+        }
+
+        stateMachine.Animator.SetFloat(FREE_LOOK_NAME, 1, .1f, deltaTime);
         stateMachine.transform.rotation = Quaternion.LookRotation(movement);
+
     }
 
     public override void Exit()
