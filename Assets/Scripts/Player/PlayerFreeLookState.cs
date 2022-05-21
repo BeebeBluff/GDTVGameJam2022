@@ -7,8 +7,21 @@ public class PlayerFreeLookState : PlayerBaseState
     //I guess we need all of these methods to override the Abstract part of the base class.
     private static readonly int FREE_LOOK_ANIMATOR_HASH = Animator.StringToHash("FreeLookSpeed");
     private const float FREE_LOOK_ANIMATOR_DAMP_TIME = .1f;
+    private const float JUMP_SPEED = .15f;
+
+
+    private float verticalVelocity = 0;
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
     {        //Calls base method, does all the normal stuff. But can do extra logic here that is specific to this class.
+        stateMachine.InputReader.JumpEvent += InputReader_JumpEvent;
+    }
+
+    private void InputReader_JumpEvent()
+    {
+        if (stateMachine.Controller.isGrounded)
+        {
+            verticalVelocity = JUMP_SPEED;
+        }
     }
 
     public override void Enter()
@@ -20,7 +33,7 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         Vector3 movement = CalculateMovement();
 
-        stateMachine.Controller.Move(movement * stateMachine.FreeLookMoveSpeed * deltaTime);
+        Move(movement * stateMachine.FreeLookMoveSpeed, deltaTime);
 
         if (stateMachine.InputReader.MovementValue == Vector2.zero)
         {
@@ -39,7 +52,8 @@ public class PlayerFreeLookState : PlayerBaseState
 
     private void FaceMovementDirection(Vector3 movement, float deltaTime)
     {
-        stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation, 
+        //movement.y = 0;
+        stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation,
             Quaternion.LookRotation(movement), deltaTime * stateMachine.RotationDamping);
     }
 
@@ -55,11 +69,4 @@ public class PlayerFreeLookState : PlayerBaseState
         return forward * stateMachine.InputReader.MovementValue.y +
             right * stateMachine.InputReader.MovementValue.x;
     }
-
-    private void OnJump()
-    {
-        stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
-    }
-
-
 }
