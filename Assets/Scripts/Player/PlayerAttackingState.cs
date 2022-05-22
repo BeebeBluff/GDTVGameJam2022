@@ -14,6 +14,7 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Enter()
     {
+        base.Enter();
         Debug.Log("Switching to attack mode");
 
         stateMachine.Animator.CrossFadeInFixedTime(ATTACK_ANIMATOR_HASH, ATTACK_TRANSITION_TIME);
@@ -21,18 +22,19 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
+        base.Tick(deltaTime);
+
         float normalizedTime = GetNormalizedTime();
 
         if (normalizedTime >= 1f)
         {
-            Debug.Log(stateMachine.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
-
             stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
         }
     }
 
     public override void Exit()
     {
+        base.Exit();
         Debug.Log("Leaving attack mode");
     }
 
@@ -53,9 +55,5 @@ public class PlayerAttackingState : PlayerBaseState
         {
             return 0f;
         }
-
-        
-
     }
-
 }

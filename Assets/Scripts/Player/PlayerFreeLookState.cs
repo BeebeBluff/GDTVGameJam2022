@@ -17,6 +17,8 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Enter()
     {
+        base.Enter();
+
         stateMachine.InputReader.AttackEvent += InputReader_AttackEvent;
 
         stateMachine.Animator.CrossFadeInFixedTime(FREE_LOOK_ANIMATOR_HASH, IDLE_TRANSITION_TIME);
@@ -24,9 +26,12 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
+        base.Tick(deltaTime);
+
         Vector3 movement = CalculateMovement();
 
         Move(movement * stateMachine.FreeLookMoveSpeed, deltaTime);
+
 
         if (stateMachine.InputReader.MovementValue == Vector2.zero)
         {
@@ -40,6 +45,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Exit()
     {
+        base.Exit();
         Debug.Log("Leaving Free Look");
 
         stateMachine.InputReader.AttackEvent -= InputReader_AttackEvent;
