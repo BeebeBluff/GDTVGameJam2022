@@ -9,19 +9,14 @@ public class PlayerFreeLookState : PlayerBaseState
     private static readonly int FREE_LOOK_ANIMATOR_HASH = Animator.StringToHash("FreeLookBlendTree");
     private const float IDLE_TRANSITION_TIME = 0.1f;
     private const float FREE_LOOK_ANIMATOR_DAMP_TIME = .1f;
-    private const float JUMP_SPEED = .15f;
 
-
-    private float verticalVelocity = 0;
+    //private float verticalVelocity = 0;
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
     {        //Calls base method, does all the normal stuff. But can do extra logic here that is specific to this class.
-        
     }
 
     public override void Enter()
     {
-        stateMachine.InputReader.JumpEvent += InputReader_JumpEvent;
-
         stateMachine.InputReader.AttackEvent += InputReader_AttackEvent;
 
         stateMachine.Animator.CrossFadeInFixedTime(FREE_LOOK_ANIMATOR_HASH, IDLE_TRANSITION_TIME);
@@ -47,14 +42,11 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         Debug.Log("Leaving Free Look");
 
-        stateMachine.InputReader.JumpEvent -= InputReader_JumpEvent;
-
         stateMachine.InputReader.AttackEvent -= InputReader_AttackEvent;
     }
 
     private void FaceMovementDirection(Vector3 movement, float deltaTime)
     {
-        //movement.y = 0;
         stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation,
             Quaternion.LookRotation(movement), deltaTime * stateMachine.RotationDamping);
     }
@@ -74,17 +66,9 @@ public class PlayerFreeLookState : PlayerBaseState
 
     private void InputReader_AttackEvent()
     {
-        if (stateMachine.Controller.isGrounded)
-        {
+        //if (stateMachine.Controller.isGrounded)
+        //{
             stateMachine.SwitchState(new PlayerAttackingState(stateMachine));
-        }
-    }
-
-    private void InputReader_JumpEvent()
-    {
-        if (stateMachine.Controller.isGrounded)
-        {
-            verticalVelocity = JUMP_SPEED;
-        }
+        //}
     }
 }
