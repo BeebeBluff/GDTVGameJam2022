@@ -8,6 +8,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 {
     public event Action JumpEvent; //Must add System Namespace
     public event Action DodgeEvent;
+    public event Action AttackEvent;
 
     public Vector2 MovementValue { get; private set; } //Not an event because we need to continually read the value.
     
@@ -48,5 +49,14 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public void OnLook(InputAction.CallbackContext context)
     {
         
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        Debug.Log("left button clicked");
+
+        AttackEvent?.Invoke();
     }
 }
