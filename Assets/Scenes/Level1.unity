@@ -457,6 +457,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1499992101 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 286594813130496019, guid: be3d37fc6846f224bbb50250af75c5f3, type: 3}
+  m_PrefabInstance: {fileID: 1272599994325274699}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1499992103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499992101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a3d44819342dd40ac761321a778d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayLength: 0.6
 --- !u!1 &1967031615
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +711,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1349659886, guid: be3d37fc6846f224bbb50250af75c5f3, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1499992103}
     - target: {fileID: 1024941744892122680, guid: be3d37fc6846f224bbb50250af75c5f3, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -705,6 +727,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -1.2102082e-10
       objectReference: {fileID: 0}
+    - target: {fileID: 1272599993579194462, guid: be3d37fc6846f224bbb50250af75c5f3, type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 1.7777778
+      objectReference: {fileID: 0}
     - target: {fileID: 1272599994116133651, guid: be3d37fc6846f224bbb50250af75c5f3, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.038097903
@@ -716,6 +742,10 @@ PrefabInstance:
     - target: {fileID: 1272599994116133651, guid: be3d37fc6846f224bbb50250af75c5f3, type: 3}
       propertyPath: m_LocalRotation.z
       value: -3.0410811e-18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272599994116133660, guid: be3d37fc6846f224bbb50250af75c5f3, type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 1.7777778
       objectReference: {fileID: 0}
     - target: {fileID: 1272599995022382048, guid: be3d37fc6846f224bbb50250af75c5f3, type: 3}
       propertyPath: m_LocalRotation.y
@@ -736,7 +766,7 @@ PrefabInstance:
     - target: {fileID: 8272722559123914959, guid: be3d37fc6846f224bbb50250af75c5f3, type: 3}
       propertyPath: <GroundedRayCast>k__BackingField
       value: 
-      objectReference: {fileID: 104304097}
+      objectReference: {fileID: 1499992103}
     - target: {fileID: 8485938819065328048, guid: be3d37fc6846f224bbb50250af75c5f3, type: 3}
       propertyPath: m_RootOrder
       value: 3
