@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.35211703, g: 0.7238915, b: 0.95842993, a: 1}
+  m_IndirectSpecularColor: {r: 0.35209528, g: 0.72411317, b: 0.95809513, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -725,10 +725,18 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -2.146856e-11
       objectReference: {fileID: 0}
+    - target: {fileID: 1272599995022382049, guid: be3d37fc6846f224bbb50250af75c5f3, type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 1.7777778
+      objectReference: {fileID: 0}
     - target: {fileID: 7222830383429822399, guid: be3d37fc6846f224bbb50250af75c5f3, type: 3}
       propertyPath: m_Name
       value: PlayerRig
       objectReference: {fileID: 0}
+    - target: {fileID: 8272722559123914959, guid: be3d37fc6846f224bbb50250af75c5f3, type: 3}
+      propertyPath: <GroundedRayCast>k__BackingField
+      value: 
+      objectReference: {fileID: 104304097}
     - target: {fileID: 8485938819065328048, guid: be3d37fc6846f224bbb50250af75c5f3, type: 3}
       propertyPath: m_RootOrder
       value: 3

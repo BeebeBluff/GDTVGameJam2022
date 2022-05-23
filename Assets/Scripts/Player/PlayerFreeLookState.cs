@@ -10,7 +10,15 @@ public class PlayerFreeLookState : PlayerBaseState
     private const float IDLE_TRANSITION_TIME = 0.1f;
     private const float FREE_LOOK_ANIMATOR_DAMP_TIME = .1f;
 
-    //private float verticalVelocity = 0;
+    private const float JUMP_TO_LANDING_TRANSITION_TIME = .1f;
+
+    private static readonly int JUMP_ANIMATOR_HASH = Animator.StringToHash("Jump");
+    private const float JUMP_VERTICAL_VELOCITY = 7;
+
+    private float verticalVelocity;
+
+    private bool previousTickGrounded = true;
+
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
     {        //Calls base method, does all the normal stuff. But can do extra logic here that is specific to this class.
     }
@@ -20,6 +28,8 @@ public class PlayerFreeLookState : PlayerBaseState
         base.Enter();
 
         stateMachine.InputReader.AttackEvent += InputReader_AttackEvent;
+        stateMachine.InputReader.JumpEvent += InputReader_JumpEvent;
+
 
         stateMachine.Animator.CrossFadeInFixedTime(FREE_LOOK_ANIMATOR_HASH, IDLE_TRANSITION_TIME);
     }
@@ -30,8 +40,20 @@ public class PlayerFreeLookState : PlayerBaseState
 
         Vector3 movement = CalculateMovement();
 
-        Move(movement * stateMachine.FreeLookMoveSpeed, deltaTime);
+        Vector3 jump = new Vector3(0f, verticalVelocity, 0f);
 
+        
+
+        Move((movement * stateMachine.FreeLookMoveSpeed) + jump, deltaTime);
+
+
+        verticalVelocity += Physics.gravity.y * deltaTime;
+
+        if (!previousTickGrounded && stateMachine.IsGrounded)
+        {
+            // Just landed
+            stateMachine.Animator.CrossFadeInFixedTime(FREE_LOOK_ANIMATOR_HASH, JUMP_TO_LANDING_TRANSITION_TIME);
+        }
 
         if (stateMachine.InputReader.MovementValue == Vector2.zero)
         {
@@ -41,6 +63,8 @@ public class PlayerFreeLookState : PlayerBaseState
 
         stateMachine.Animator.SetFloat(IDLE_RUN_BLEND_ANIMATOR_HASH, 1, FREE_LOOK_ANIMATOR_DAMP_TIME, deltaTime);
         FaceMovementDirection(movement, deltaTime);
+
+        previousTickGrounded = stateMachine.IsGrounded;
     }
 
     public override void Exit()
@@ -49,6 +73,8 @@ public class PlayerFreeLookState : PlayerBaseState
         Debug.Log("Leaving Free Look");
 
         stateMachine.InputReader.AttackEvent -= InputReader_AttackEvent;
+        stateMachine.InputReader.JumpEvent -= InputReader_JumpEvent;
+
     }
 
     private void FaceMovementDirection(Vector3 movement, float deltaTime)
@@ -76,5 +102,15 @@ public class PlayerFreeLookState : PlayerBaseState
         //{
             stateMachine.SwitchState(new PlayerAttackingState(stateMachine));
         //}
+    }
+
+
+    private void InputReader_JumpEvent()
+    {
+        if (verticalVelocity < 0 && stateMachine.IsGrounded)
+        {
+            verticalVelocity = JUMP_VERTICAL_VELOCITY;
+            stateMachine.Animator.CrossFadeInFixedTime(JUMP_ANIMATOR_HASH, .1f);
+        }
     }
 }
