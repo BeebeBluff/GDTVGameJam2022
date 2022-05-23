@@ -10,6 +10,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public ForceReceiver ForceReceiver { get; set; }
     [field: SerializeField] public float FreeLookMoveSpeed { get; private set; }
     [field: SerializeField] public float RotationDamping { get; private set; }
+    [field: SerializeField] public ProjectileHandler ProjectileHandler { get; private set; }
 
     public Transform MainCameraTransform { get; private set; }
 

@@ -7,6 +7,8 @@ public class PlayerAttackingState : PlayerBaseState
     private static readonly int ATTACK_ANIMATOR_HASH = Animator.StringToHash("Attack");
     private float ATTACK_TRANSITION_TIME = 0.1f;
 
+    private bool fired = false;
+
 
     public PlayerAttackingState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
@@ -18,13 +20,21 @@ public class PlayerAttackingState : PlayerBaseState
         Debug.Log("Switching to attack mode");
 
         stateMachine.Animator.CrossFadeInFixedTime(ATTACK_ANIMATOR_HASH, ATTACK_TRANSITION_TIME);
+
+        stateMachine.ProjectileHandler.LoadArrow();
     }
 
     public override void Tick(float deltaTime)
     {
         base.Tick(deltaTime);
 
-        float normalizedTime = GetNormalizedTime();
+        float normalizedTime = GetNormalizedAttackAnimTime();
+
+        if (normalizedTime >= 0.5f && !fired)
+        {
+            stateMachine.ProjectileHandler.ShootArrow();
+            fired = true;
+        }
 
         if (normalizedTime >= 1f)
         {
@@ -38,7 +48,7 @@ public class PlayerAttackingState : PlayerBaseState
         Debug.Log("Leaving attack mode");
     }
 
-    private float GetNormalizedTime()
+    private float GetNormalizedAttackAnimTime()
     {
         AnimatorStateInfo currentInfo = stateMachine.Animator.GetCurrentAnimatorStateInfo(0);
         AnimatorStateInfo nextInfo = stateMachine.Animator.GetNextAnimatorStateInfo(0);
