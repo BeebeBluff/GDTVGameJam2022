@@ -11,6 +11,9 @@ namespace Assets.Scripts.Enemy
     {
         [field: SerializeField] public CharacterController Controller { get; private set; }
         [field: SerializeField] public Animator Animator { get; private set; }
+        [field: SerializeField] public ForceReceiver ForceReceiver { get; set; }
+        [field: SerializeField] public GroundedRayCast GroundedRayCast { get; set; }
+
         [field: SerializeField] public Transform[] Waypoints { get; private set; }
         [field: SerializeField] public Transform Player { get; private set; }
 

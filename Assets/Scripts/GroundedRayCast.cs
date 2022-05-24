@@ -11,13 +11,14 @@ public class GroundedRayCast : MonoBehaviour
     private static readonly Vector3 RAY_5 = new Vector3(-.5f, -1, .5f);
 
     [SerializeField] private float rayLength;
+    [SerializeField] private float rayOffset;
 
     public bool IsGrounded { get; private set; }
 
     void Update()
     {
         Vector3 position = transform.position;
-        position.y += .5f;
+        position.y += rayOffset;
 
 #if DEBUG
         Debug.DrawRay(position, RAY_1 * rayLength, Color.red);

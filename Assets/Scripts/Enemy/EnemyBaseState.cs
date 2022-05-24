@@ -26,6 +26,7 @@ namespace Assets.Scripts.Enemy
 
         public override void Tick(float deltaTime)
         {
+            stateMachine.Controller.Move(stateMachine.ForceReceiver.Movement * deltaTime);
         }
     }
 }
