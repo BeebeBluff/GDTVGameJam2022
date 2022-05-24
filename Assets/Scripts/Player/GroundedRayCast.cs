@@ -19,11 +19,13 @@ public class GroundedRayCast : MonoBehaviour
         Vector3 position = transform.position;
         position.y += .5f;
 
+#if DEBUG
         Debug.DrawRay(position, RAY_1 * rayLength, Color.red);
         Debug.DrawRay(position, RAY_2 * rayLength, Color.green);
         Debug.DrawRay(position, RAY_3 * rayLength, Color.blue);
         Debug.DrawRay(position, RAY_4 * rayLength, Color.yellow);
         Debug.DrawRay(position, RAY_5 * rayLength, Color.magenta);
+#endif
 
         // For now any hit is grounded
         IsGrounded = Physics.Raycast(position, RAY_1, out _, rayLength)
