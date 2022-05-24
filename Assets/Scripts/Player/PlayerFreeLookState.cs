@@ -70,7 +70,6 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Exit()
     {
         base.Exit();
-        Debug.Log("Leaving Free Look");
 
         stateMachine.InputReader.AttackEvent -= InputReader_AttackEvent;
         stateMachine.InputReader.JumpEvent -= InputReader_JumpEvent;

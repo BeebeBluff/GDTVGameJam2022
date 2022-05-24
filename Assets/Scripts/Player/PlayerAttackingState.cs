@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,11 +18,20 @@ public class PlayerAttackingState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Switching to attack mode");
 
         stateMachine.Animator.CrossFadeInFixedTime(ATTACK_ANIMATOR_HASH, ATTACK_TRANSITION_TIME);
 
+        LookAtMouseClick();
+
         stateMachine.ProjectileHandler.LoadArrow();
+    }
+
+    private void LookAtMouseClick()
+    {
+        Vector3 MousePos = stateMachine.MainCameraTransform.forward;
+        MousePos.y = 0f;
+
+        stateMachine.transform.rotation = Quaternion.LookRotation(MousePos);
     }
 
     public override void Tick(float deltaTime)
@@ -45,7 +55,6 @@ public class PlayerAttackingState : PlayerBaseState
     public override void Exit()
     {
         base.Exit();
-        Debug.Log("Leaving attack mode");
     }
 
     private float GetNormalizedAttackAnimTime()

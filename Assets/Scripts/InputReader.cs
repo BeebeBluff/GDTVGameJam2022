@@ -55,8 +55,6 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     {
         if (!context.performed) { return; }
 
-        Debug.Log("left button clicked");
-
         AttackEvent?.Invoke();
     }
 }

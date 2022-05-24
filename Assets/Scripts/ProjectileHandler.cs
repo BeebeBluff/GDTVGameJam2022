@@ -13,24 +13,7 @@ public class ProjectileHandler : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<InputReader>().AttackEvent += InputReader_AttackEvent;
-
         cosmeticArrow.SetActive(false);
-    }
-
-    private void Update()
-    {
-        
-    }
-
-    private void OnDestroy()
-    {
-        GetComponent<InputReader>().AttackEvent -= InputReader_AttackEvent;
-    }
-
-    private void InputReader_AttackEvent()
-    {
-
     }
 
     public void LoadArrow()

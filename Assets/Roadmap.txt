@@ -1,0 +1,18 @@
+Necessary additions:
+- change aiming system
+- Enemy animations
+- enemy attack collisions
+- player health
+- enemy health
+- full two levels
+- level end conditions
+- main menu
+- UI
+
+Wishlist things:
+- dodge roll
+- multiple enemy types
+- arrow types
+- Necromancy elements
+- basic story
+
