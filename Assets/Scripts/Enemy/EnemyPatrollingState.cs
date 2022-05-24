@@ -28,9 +28,17 @@ namespace Assets.Scripts.Enemy
         {
             base.Tick(deltaTime);
 
-            Vector3 currentEnemyPosition = stateMachine.Controller.transform.position;
-            currentEnemyPosition.y = 0; 
-            float distance = Vector3.Distance(currentEnemyPosition, currentWaypointPosition);
+
+            Vector3 currentPosition = stateMachine.Controller.transform.position;
+            currentPosition.y = 0;
+
+            if(Vector3.Distance(currentPosition, stateMachine.Player.position) < stateMachine.PlayerDetectionRange)
+            {
+                stateMachine.SwitchState(new EnemyPursuitState(stateMachine));
+                return;
+            }
+
+            float distance = Vector3.Distance(currentPosition, currentWaypointPosition);
 
             if (distance < WAYPOINT_MIN_DISTANCE)
             {
