@@ -22,8 +22,14 @@ namespace Assets.Scripts.Enemy
 
         void Start()
         {
-            SwitchState(new EnemyPatrollingState(this));
+            if (Waypoints.Length == 0)
+            {
+                SwitchState(new EnemyIdleState(this));
+            }
+            else
+            {
+                SwitchState(new EnemyPatrollingState(this));
+            }
         }
-        
     }
 }

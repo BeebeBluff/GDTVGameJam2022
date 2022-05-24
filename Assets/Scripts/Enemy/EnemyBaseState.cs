@@ -20,13 +20,13 @@ namespace Assets.Scripts.Enemy
         {
         }
 
-        public override void Exit()
-        {
-        }
-
         public override void Tick(float deltaTime)
         {
             stateMachine.Controller.Move(stateMachine.ForceReceiver.Movement * deltaTime);
+        }
+
+        public override void Exit()
+        {
         }
     }
 }
