@@ -19,6 +19,8 @@ namespace Assets.Scripts.Enemy
 
         void Start()
         {
+            SetLimbPhysics(true);
+
             SwitchState();
         }
 
@@ -32,6 +34,21 @@ namespace Assets.Scripts.Enemy
             {
                 SwitchState(new EnemyPatrollingState(this));
             }
+        }
+
+        private void SetLimbPhysics(bool isAlive)
+        {
+            Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+            Collider[] colliders = GetComponentsInChildren<Collider>();
+
+            foreach(Rigidbody rigidbody in rigidbodies) //True if alive
+            { rigidbody.isKinematic = isAlive; } //Kinematic means not affected by gravity
+
+            foreach (Collider collider in colliders)
+            { collider.enabled = !isAlive; } // False if alive
+
+            GetComponent<CharacterController>().enabled = isAlive;
+
         }
     }
 }
