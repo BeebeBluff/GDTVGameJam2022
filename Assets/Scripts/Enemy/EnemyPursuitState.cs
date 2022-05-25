@@ -30,6 +30,13 @@ namespace Assets.Scripts.Enemy
                 return;
             }
 
+            if (Vector3.Distance(stateMachine.transform.position, stateMachine.Player.position) < stateMachine.PlayerAttackRange)
+            {
+                //Player is within attack range
+                stateMachine.SwitchState(new EnemyAttackState(stateMachine));
+                return;
+            }
+
             stateMachine.transform.rotation = Utilities.LookAt(stateMachine.transform.position,
                 stateMachine.Player.position);
 
