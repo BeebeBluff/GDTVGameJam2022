@@ -16,6 +16,7 @@ namespace Assets.Scripts.Enemy
         [field: SerializeField] public float RunSpeed { get; set; }
         [field: SerializeField] public float PlayerDetectionRange { get; set; }
 
+        public bool IsGrounded => GroundedRayCast.IsGrounded;
 
         void Start()
         {

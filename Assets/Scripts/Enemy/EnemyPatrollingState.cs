@@ -66,7 +66,8 @@ namespace Assets.Scripts.Enemy
 
         private void LookAtWaypoint()
         {
-            stateMachine.Controller.transform.LookAt(currentWaypointPosition);
+            stateMachine.transform.rotation = Utilities.LookAt(stateMachine.transform.position,
+                currentWaypointPosition);
         }
     }
 }

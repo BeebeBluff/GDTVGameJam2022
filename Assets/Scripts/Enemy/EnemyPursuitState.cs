@@ -23,22 +23,18 @@ namespace Assets.Scripts.Enemy
         {
             base.Tick(deltaTime);
 
-            Vector3 currentPosition = stateMachine.Controller.transform.position;
-            currentPosition.y = 0;
-            Vector3 playerPosition = stateMachine.Player.position;
-            playerPosition.y = 0;
-
-            if (Vector3.Distance(currentPosition, playerPosition) > stateMachine.PlayerDetectionRange)
+            if (Vector3.Distance(stateMachine.transform.position, stateMachine.Player.position) > stateMachine.PlayerDetectionRange)
             {
+                // Player was lost
                 stateMachine.SwitchState();
                 return;
             }
 
-            stateMachine.Controller.transform.LookAt(playerPosition);
+            stateMachine.transform.rotation = Utilities.LookAt(stateMachine.transform.position,
+                stateMachine.Player.position);
 
-            Vector3 movement = stateMachine.Controller.transform.forward * stateMachine.RunSpeed * deltaTime;
+            Vector3 movement = stateMachine.transform.forward * stateMachine.RunSpeed * deltaTime;
             movement.y = 0;
-
             stateMachine.Controller.Move(movement);
         }
 
