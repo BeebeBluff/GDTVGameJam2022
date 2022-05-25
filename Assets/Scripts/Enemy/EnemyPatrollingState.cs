@@ -68,6 +68,8 @@ namespace Assets.Scripts.Enemy
         {
             stateMachine.transform.rotation = Utilities.LookAt(stateMachine.transform.position,
                 currentWaypointPosition);
+            stateMachine.transform.rotation = Utilities.SlerpLookAt(stateMachine.transform.position,
+                currentWaypointPosition, stateMachine.transform.rotation, Time.deltaTime *.5f);
         }
     }
 }
