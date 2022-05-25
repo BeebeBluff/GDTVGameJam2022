@@ -12,7 +12,8 @@ namespace Assets.Scripts.Enemy
         [field: SerializeField] public Transform[] Waypoints { get; private set; }
         [field: SerializeField] public Transform Player { get; private set; }
 
-        [field: SerializeField] public float MovementSpeed { get; set; }
+        [field: SerializeField] public float WalkSpeed { get; set; }
+        [field: SerializeField] public float RunSpeed { get; set; }
         [field: SerializeField] public float PlayerDetectionRange { get; set; }
 
 

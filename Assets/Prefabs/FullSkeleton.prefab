@@ -771,7 +771,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   <Player>k__BackingField: {fileID: 0}
-  <MovementSpeed>k__BackingField: 5
+  <WalkSpeed>k__BackingField: 2
+  <RunSpeed>k__BackingField: 5
   <PlayerDetectionRange>k__BackingField: 10
 --- !u!143 &3063321539707804600
 CharacterController:
@@ -801,7 +802,7 @@ Animator:
   m_GameObject: {fileID: 3063321539707804606}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8ed68a3a383765a4bb2001de21d699c1, type: 3}
-  m_Controller: {fileID: 9100000, guid: f893d78148eef4541b5a78c4b4571608, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4d7fa5290cbfca84080829820d3a3bae, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

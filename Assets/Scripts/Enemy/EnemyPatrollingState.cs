@@ -4,6 +4,9 @@ namespace Assets.Scripts.Enemy
 {
     public class EnemyPatrollingState : EnemyBaseState
     {
+        private static readonly int WALK_ANIMATION_HASH = Animator.StringToHash("WalkForward");
+        private float WALK_TRANSITION_TIME = 0.1f;
+
         private const float WAYPOINT_MIN_DISTANCE = 1f;
 
         private int currentWaypointIndex;
@@ -18,6 +21,8 @@ namespace Assets.Scripts.Enemy
         {
             base.Enter();
 
+            stateMachine.Animator.CrossFadeInFixedTime(WALK_ANIMATION_HASH, WALK_TRANSITION_TIME);
+
             currentWaypointIndex = 0;
             currentWaypointPosition = stateMachine.Waypoints[currentWaypointIndex].position;
             currentWaypointPosition.y = 0;
@@ -29,8 +34,8 @@ namespace Assets.Scripts.Enemy
             base.Tick(deltaTime);
 
             Vector3 currentPosition = stateMachine.Controller.transform.position;
-      
-            if(Vector3.Distance(currentPosition, stateMachine.Player.position) < stateMachine.PlayerDetectionRange)
+
+            if (Vector3.Distance(currentPosition, stateMachine.Player.position) < stateMachine.PlayerDetectionRange)
             {
                 stateMachine.SwitchState(new EnemyPursuitState(stateMachine));
                 return;
@@ -48,7 +53,7 @@ namespace Assets.Scripts.Enemy
                 LookAtWaypoint();
             }
 
-            Vector3 movement = stateMachine.Controller.transform.forward * stateMachine.MovementSpeed * deltaTime;
+            Vector3 movement = stateMachine.Controller.transform.forward * stateMachine.WalkSpeed * deltaTime;
             movement.y = 0;
 
             stateMachine.Controller.Move(movement);

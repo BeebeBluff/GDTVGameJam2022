@@ -4,7 +4,9 @@ namespace Assets.Scripts.Enemy
 {
     public class EnemyPursuitState : EnemyBaseState
     {
-        private Vector3 _startPosition;
+        private static readonly int RUN_ANIMATION_HASH = Animator.StringToHash("Running");
+        private float RUN_TRANSITION_TIME = 0.1f;
+
         public EnemyPursuitState(EnemyStateMachine stateMachine) : base(stateMachine)
         {
         }
@@ -12,8 +14,9 @@ namespace Assets.Scripts.Enemy
         public override void Enter()
         {
             base.Enter();
-            _startPosition = stateMachine.Controller.transform.position;
             Debug.Log("Entering pursuit state");
+
+            stateMachine.Animator.CrossFadeInFixedTime(RUN_ANIMATION_HASH, RUN_TRANSITION_TIME);
         }
 
         public override void Tick(float deltaTime)
@@ -22,16 +25,18 @@ namespace Assets.Scripts.Enemy
 
             Vector3 currentPosition = stateMachine.Controller.transform.position;
             currentPosition.y = 0;
+            Vector3 playerPosition = stateMachine.Player.position;
+            playerPosition.y = 0;
 
-            if (Vector3.Distance(currentPosition, stateMachine.Player.position) > stateMachine.PlayerDetectionRange)
+            if (Vector3.Distance(currentPosition, playerPosition) > stateMachine.PlayerDetectionRange)
             {
                 stateMachine.SwitchState();
                 return;
             }
 
-            stateMachine.Controller.transform.LookAt(stateMachine.Player.position);
+            stateMachine.Controller.transform.LookAt(playerPosition);
 
-            Vector3 movement = stateMachine.Controller.transform.forward * stateMachine.MovementSpeed * deltaTime;
+            Vector3 movement = stateMachine.Controller.transform.forward * stateMachine.RunSpeed * deltaTime;
             movement.y = 0;
 
             stateMachine.Controller.Move(movement);
