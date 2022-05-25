@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Enemy
 {
@@ -20,7 +15,13 @@ namespace Assets.Scripts.Enemy
         [field: SerializeField] public float MovementSpeed { get; set; }
         [field: SerializeField] public float PlayerDetectionRange { get; set; }
 
+
         void Start()
+        {
+            SwitchState();
+        }
+
+        public void SwitchState()
         {
             if (Waypoints.Length == 0)
             {

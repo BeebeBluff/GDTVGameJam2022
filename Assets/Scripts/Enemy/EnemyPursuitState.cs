@@ -4,6 +4,7 @@ namespace Assets.Scripts.Enemy
 {
     public class EnemyPursuitState : EnemyBaseState
     {
+        private Vector3 _startPosition;
         public EnemyPursuitState(EnemyStateMachine stateMachine) : base(stateMachine)
         {
         }
@@ -11,7 +12,7 @@ namespace Assets.Scripts.Enemy
         public override void Enter()
         {
             base.Enter();
-
+            _startPosition = stateMachine.Controller.transform.position;
             Debug.Log("Entering pursuit state");
         }
 
@@ -24,7 +25,7 @@ namespace Assets.Scripts.Enemy
 
             if (Vector3.Distance(currentPosition, stateMachine.Player.position) > stateMachine.PlayerDetectionRange)
             {
-                stateMachine.SwitchState(new EnemyPatrollingState(stateMachine));
+                stateMachine.SwitchState();
                 return;
             }
 
