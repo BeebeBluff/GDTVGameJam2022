@@ -47,8 +47,6 @@ namespace Assets.Scripts.Enemy
         public override void Exit()
         {
             base.Exit();
-
-            Debug.Log("Exiting pursuit state");
         }
     }
 }
