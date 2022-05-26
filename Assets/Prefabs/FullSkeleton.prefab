@@ -712,9 +712,10 @@ GameObject:
   - component: {fileID: 3063321539707804601}
   - component: {fileID: 3063321539707804613}
   - component: {fileID: 3063321539707804614}
+  - component: {fileID: 2497363581090207020}
   m_Layer: 0
   m_Name: FullSkeleton
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -745,11 +746,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 3063321539707804606}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.32
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: -0.05, y: 0.22, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &3063321539707804615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -766,6 +767,7 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 3063321539707804601}
   <ForceReceiver>k__BackingField: {fileID: 3063321539707804613}
   <GroundedRayCast>k__BackingField: {fileID: 3063321539707804614}
+  <WeaponCollider>k__BackingField: {fileID: 2804540128810556899}
   <Waypoints>k__BackingField:
   - {fileID: 0}
   - {fileID: 0}
@@ -840,6 +842,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayLength: 0.6
   rayOffset: 0.5
+--- !u!114 &2497363581090207020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3063321539707804606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a6cd5e8a0d78e4e9a8f660353e2099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3316358078153320015
 GameObject:
   m_ObjectHideFlags: 0
@@ -3175,8 +3189,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkeletonSword
       objectReference: {fileID: 0}
+    - target: {fileID: 5746359903908249793, guid: 78925be475d86164f92d73a589da7cba, type: 3}
+      propertyPath: m_TagString
+      value: EnemyWeapon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78925be475d86164f92d73a589da7cba, type: 3}
+--- !u!65 &2804540128810556899 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 2542822446858203349, guid: 78925be475d86164f92d73a589da7cba, type: 3}
+  m_PrefabInstance: {fileID: 405976980401138998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4708138091117033293 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4968872607988292219, guid: 78925be475d86164f92d73a589da7cba, type: 3}

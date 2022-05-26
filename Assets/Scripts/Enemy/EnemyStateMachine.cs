@@ -51,6 +51,7 @@ namespace Assets.Scripts.Enemy
             { collider.enabled = !isAlive; } // False if alive
 
             GetComponent<CharacterController>().enabled = isAlive;
+            GetComponent<Collider>().enabled = isAlive;
 
         }
     }

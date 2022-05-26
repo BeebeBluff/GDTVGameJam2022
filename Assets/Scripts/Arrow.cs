@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    private static readonly string ENEMY_TAG = "Enemy";
+
     float arrowKillTime = 10f;
-    float arrowForce = 20f;
 
     Rigidbody myRigidBody;
 
@@ -31,14 +32,19 @@ public class Arrow : MonoBehaviour
         Destroy(myRigidBody);
         Destroy(GetComponent<BoxCollider>()); //stop motion and future collisions
 
-        gameObject.transform.SetParent(other.gameObject.transform);
-        
-        if(other.gameObject.GetComponent<Rigidbody>() != null)
-        {
-            Rigidbody collisionRigidbody = other.gameObject.GetComponent<Rigidbody>();
-
-            collisionRigidbody.AddForce(transform.forward * arrowForce);
-        }
+        AttachAndPushTarget(other);
     }
 
+    private void AttachAndPushTarget(Collider other)//Awful code
+    {
+        
+        if (other.gameObject.CompareTag(ENEMY_TAG))
+        {
+            Transform rigTransform = other.gameObject.transform.Find("Rig").Find("root").Find("B-hips");
+
+            gameObject.transform.SetParent(rigTransform);
+        }
+        else
+        { gameObject.transform.SetParent(other.gameObject.transform); }
+    }
 }
