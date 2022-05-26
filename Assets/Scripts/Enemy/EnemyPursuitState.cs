@@ -14,7 +14,6 @@ namespace Assets.Scripts.Enemy
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Entering pursuit state");
 
             stateMachine.Animator.CrossFadeInFixedTime(RUN_ANIMATION_HASH, RUN_TRANSITION_TIME);
         }

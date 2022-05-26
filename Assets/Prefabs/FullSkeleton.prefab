@@ -768,6 +768,7 @@ MonoBehaviour:
   <ForceReceiver>k__BackingField: {fileID: 3063321539707804613}
   <GroundedRayCast>k__BackingField: {fileID: 3063321539707804614}
   <WeaponCollider>k__BackingField: {fileID: 2804540128810556899}
+  <EnemyHealth>k__BackingField: {fileID: 2497363581090207020}
   <Waypoints>k__BackingField:
   - {fileID: 0}
   - {fileID: 0}

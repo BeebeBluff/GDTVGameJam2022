@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Enemy
 {
@@ -9,6 +10,7 @@ namespace Assets.Scripts.Enemy
         [field: SerializeField] public ForceReceiver ForceReceiver { get; set; }
         [field: SerializeField] public GroundedRayCast GroundedRayCast { get; set; }
         [field: SerializeField] public Collider WeaponCollider { get; set; } //May need to change for other enemy types
+        [field: SerializeField] public EnemyHealth EnemyHealth { get; set; }
 
         [field: SerializeField] public Transform[] Waypoints { get; private set; }
         [field: SerializeField] public Transform Player { get; private set; }
@@ -22,9 +24,14 @@ namespace Assets.Scripts.Enemy
 
         void Start()
         {
-            SetLimbPhysics(true);
-
             SwitchState();
+
+            EnemyHealth.DieEvent += EnemyHealth_DieEvent;
+        }
+
+        private void OnDestroy()
+        {
+            EnemyHealth.DieEvent -= EnemyHealth_DieEvent;
         }
 
         public void SwitchState()
@@ -39,20 +46,11 @@ namespace Assets.Scripts.Enemy
             }
         }
 
-        private void SetLimbPhysics(bool isAlive)
+        private void EnemyHealth_DieEvent()
         {
-            Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
-            Collider[] colliders = GetComponentsInChildren<Collider>();
-
-            foreach(Rigidbody rigidbody in rigidbodies) //True if alive
-            { rigidbody.isKinematic = isAlive; } //Kinematic means not affected by gravity
-
-            foreach (Collider collider in colliders)
-            { collider.enabled = !isAlive; } // False if alive
-
-            GetComponent<CharacterController>().enabled = isAlive;
-            GetComponent<Collider>().enabled = isAlive;
-
+            SwitchState(new EnemyDeathState(this));
         }
+
+
     }
 }

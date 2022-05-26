@@ -32,10 +32,10 @@ public class Arrow : MonoBehaviour
         Destroy(myRigidBody);
         Destroy(GetComponent<BoxCollider>()); //stop motion and future collisions
 
-        AttachAndPushTarget(other);
+        AttachToTarget(other);
     }
 
-    private void AttachAndPushTarget(Collider other)//Awful code
+    private void AttachToTarget(Collider other)
     {
         
         if (other.gameObject.CompareTag(ENEMY_TAG))
