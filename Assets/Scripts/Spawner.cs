@@ -5,20 +5,25 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] float spawnDelay = 8f;
+    float timer;
     [SerializeField] GameObject spawnPrefab;
 
     private static readonly string NECROMANCER_NAME = "Necromancer";
 
+    private void Start()
+    {
+        timer = spawnDelay;
+    }
 
     void Update()
     {
-        spawnDelay -= Time.deltaTime;
+        timer -= Time.deltaTime;
 
-        if (spawnDelay <= 0f && GameObject.Find(NECROMANCER_NAME) != null)
+        if (timer <= 0f && GameObject.Find(NECROMANCER_NAME) != null)
         {
             Instantiate(spawnPrefab, gameObject.transform.position, Quaternion.identity);
 
-            spawnDelay = 8f;
+            timer = spawnDelay;
         }
     }
 }

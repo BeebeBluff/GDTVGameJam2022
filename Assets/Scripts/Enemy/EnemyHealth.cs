@@ -44,6 +44,8 @@ public class EnemyHealth : MonoBehaviour
 
         GetComponent<Animator>().enabled = false;
         Destroy(GetComponent<CharacterController>());
+
+        Invoke("DestroyGameObject", 15f);
     }
 
     private void CreateForceExplosion(Collider other)
@@ -59,5 +61,20 @@ public class EnemyHealth : MonoBehaviour
                 rigidbody.AddExplosionForce(1500f, other.gameObject.transform.position, 1.5f);
             }
         }
+    }
+
+    public void BeginDisintegration()
+    {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Destroy(colliders[i]);
+        }
+    }
+
+    private void DestroyGameObject()
+    {
+        Destroy(gameObject);
     }
 }

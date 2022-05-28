@@ -31,6 +31,7 @@ namespace Assets.Scripts.Enemy
             SwitchState();
 
             EnemyHealth.DieEvent += EnemyHealth_DieEvent;
+            FindObjectOfType<LevelManager>().EnemySpawned();
         }
 
         private void OnDestroy()
@@ -65,6 +66,7 @@ namespace Assets.Scripts.Enemy
 
         private void EnemyHealth_DieEvent()
         {
+            FindObjectOfType<LevelManager>().EnemyDied();
             SwitchState(new EnemyDeathState(this));
         }
 
