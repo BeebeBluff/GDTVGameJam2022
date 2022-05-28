@@ -68,6 +68,8 @@ namespace Assets.Scripts.Enemy
         {
             FindObjectOfType<LevelManager>().EnemyDied();
             SwitchState(new EnemyDeathState(this));
+
+            EnemyHealth.DieEvent -= EnemyHealth_DieEvent;
         }
 
 

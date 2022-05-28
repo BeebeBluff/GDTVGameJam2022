@@ -12,7 +12,10 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float FreeLookMoveSpeed { get; private set; }
     [field: SerializeField] public float RotationDamping { get; private set; }
     [field: SerializeField] public ProjectileHandler ProjectileHandler { get; private set; }
-
+    [field: SerializeField] public PlayerHealth PlayerHealth { get; private set; }
+    
+    
+    public LevelManager LevelManager { get; private set; }
 
     public bool IsGrounded => GroundedRayCast.IsGrounded;
 
@@ -23,6 +26,23 @@ public class PlayerStateMachine : StateMachine
     {
         MainCameraTransform = Camera.main.transform;
 
+        LevelManager = FindObjectOfType<LevelManager>();
+
+        PlayerHealth.PlayerDeathEvent += PlayerHealth_PlayerDeathEvent;
+
         SwitchState(new PlayerFreeLookState(this));
     }
+
+    private void OnDestroy()
+    {
+        PlayerHealth.PlayerDeathEvent -= PlayerHealth_PlayerDeathEvent;
+    }
+
+    private void PlayerHealth_PlayerDeathEvent()
+    {
+        SwitchState(new PlayerDeathState(this));
+
+        PlayerHealth.PlayerDeathEvent -= PlayerHealth_PlayerDeathEvent;
+    }
+
 }

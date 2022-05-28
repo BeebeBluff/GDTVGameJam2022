@@ -33,6 +33,8 @@ public class LevelManager : MonoBehaviour
         if (RemainingEnemies == 0 && IsNecroDead)
         {
             //Pause game, load Level Win canvas UI. w/ buttons for Main Menu and next level.
+
+            Debug.Log("Level Won!");
         }
     }
 
@@ -40,6 +42,12 @@ public class LevelManager : MonoBehaviour
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex + 1);
+    }
+
+    public void ReloadLevel()
+    {
+        //pause game, load death canvas with buttons for main menu or replay level.
+        Debug.Log("Level lost");
     }
 
 }

@@ -15,7 +15,6 @@ namespace Assets.Scripts.Enemy
         {
             base.Enter();
 
-            Debug.Log("Entering Attack Mode");
             stateMachine.WeaponCollider.enabled = true; //turn on sword collider
 
             stateMachine.Animator.CrossFadeInFixedTime(ATTACK_ANIMATION_HASH, 
