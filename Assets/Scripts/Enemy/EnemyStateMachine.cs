@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Enemy
@@ -24,6 +25,9 @@ namespace Assets.Scripts.Enemy
 
         void Start()
         {
+            FindWaypointTransforms(); //This line and the next are for spawned enemies.
+            Player = FindObjectOfType<PlayerHealth>().transform;
+
             SwitchState();
 
             EnemyHealth.DieEvent += EnemyHealth_DieEvent;
@@ -44,6 +48,19 @@ namespace Assets.Scripts.Enemy
             {
                 SwitchState(new EnemyPatrollingState(this));
             }
+        }
+
+        private void FindWaypointTransforms()
+        {
+            Waypoint[] waypointArray =  FindObjectsOfType<Waypoint>();
+            List<Transform> transforms = new List<Transform>();
+
+            for (int i = 0; i < waypointArray.Length; i++)
+            {
+                transforms.Add(waypointArray[i].transform);
+            }
+
+            Waypoints = transforms.ToArray();
         }
 
         private void EnemyHealth_DieEvent()

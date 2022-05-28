@@ -1124,6 +1124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8329963320950299388}
   - component: {fileID: 8275984723918403788}
+  - component: {fileID: 7997057637586450032}
   m_Layer: 0
   m_Name: Necromancer
   m_TagString: Untagged
@@ -1138,7 +1139,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8326390482331774354}
-  m_LocalRotation: {x: -0, y: -0.3033302, z: -0, w: 0.9528855}
+  m_LocalRotation: {x: 0, y: -0.3033263, z: 0, w: 0.95288676}
   m_LocalPosition: {x: 0, y: 0.543, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1168,6 +1169,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7997057637586450032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326390482331774354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020ed6785a1f86a4da47248c96e4b997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8326393434090680064
 GameObject:
   m_ObjectHideFlags: 0

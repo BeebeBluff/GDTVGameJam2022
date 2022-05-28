@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f574692eaf23ab44a364ac2df61ae92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
+  controller: {fileID: 2893398191464820764}
 --- !u!114 &2893398191464820764
 MonoBehaviour:
   m_ObjectHideFlags: 0
