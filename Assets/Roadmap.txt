@@ -1,9 +1,9 @@
 Necessary additions:
 - change aiming system (DONE)
-- Enemy animations
-- enemy attack collisions
+- Enemy animations (DONE)
+- enemy attack collisions (DONE)
 - player health
-- enemy health
+- enemy health (DONE)
 - full two levels
 - level end conditions
 - main menu
@@ -15,4 +15,11 @@ Wishlist things:
 - arrow types
 - Necromancy elements
 - basic story
+- baked lighting
+- 
 
+Asset List
+
+Renneal Font by Natha Type https://din-studio.com/product/renneal/
+Medieval Woman Model https://quaternius.com/packs/ultimatemodularwomen.html
+Jonesan Font by Mustofa Nur Sidiq https://www.creativefabrica.com/product/jonesan/

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Enemy
 {
@@ -23,11 +24,14 @@ namespace Assets.Scripts.Enemy
 
             stateMachine.Animator.CrossFadeInFixedTime(WALK_ANIMATION_HASH, WALK_TRANSITION_TIME);
 
-            currentWaypointIndex = 0;
+            currentWaypointIndex = FindClosestWaypoint();
+
             currentWaypointPosition = stateMachine.Waypoints[currentWaypointIndex].position;
             currentWaypointPosition.y = 0;
             LookAtWaypoint();
         }
+
+
 
         public override void Tick(float deltaTime)
         {
@@ -62,6 +66,27 @@ namespace Assets.Scripts.Enemy
         public override void Exit()
         {
             base.Exit();
+        }
+        private int FindClosestWaypoint()
+        {
+            int currentShortestWaypointIndex = 0;
+
+            float distanceToWaypoint;
+            float shortestWaypointDistance = 999999;
+
+            for (int i = 0; i < stateMachine.Waypoints.Length; i++)
+            {
+                distanceToWaypoint = Vector3.Distance(stateMachine.Controller.transform.position,
+                                                    stateMachine.Waypoints[i].position);
+
+                if (distanceToWaypoint < shortestWaypointDistance)
+                { 
+                    shortestWaypointDistance = distanceToWaypoint;
+                    currentShortestWaypointIndex = i;
+                }
+            }
+
+            return currentShortestWaypointIndex;
         }
 
         private void LookAtWaypoint()
