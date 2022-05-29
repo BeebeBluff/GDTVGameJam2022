@@ -15,6 +15,7 @@ public class Necromancer : MonoBehaviour
     GameObject chantObject;
     float chantingLength;
     float timer;
+    bool isNecroAlive = true;
 
 
     private void Start()
@@ -38,6 +39,7 @@ public class Necromancer : MonoBehaviour
     {
         if (other.gameObject.CompareTag(PLAYER_ARROW_STRING))
         {
+            isNecroAlive = false;
             Die(other);
         }
     }
@@ -60,7 +62,7 @@ public class Necromancer : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
-        if (timer <= 0f)
+        if (timer <= 0f && isNecroAlive)
         {
             StartChant();
 
