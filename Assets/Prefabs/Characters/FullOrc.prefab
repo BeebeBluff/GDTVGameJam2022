@@ -417,7 +417,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 0afcd904f8611074ba21f09df46607d7, type: 3}
   <WalkSpeed>k__BackingField: 2
   <RunSpeed>k__BackingField: 5
-  <PlayerDetectionRange>k__BackingField: 10
+  <PlayerDetectionRange>k__BackingField: 15
   <PlayerAttackRange>k__BackingField: 1
 --- !u!143 &261299656167745894
 CharacterController:
