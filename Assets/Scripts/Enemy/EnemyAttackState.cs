@@ -19,6 +19,8 @@ namespace Assets.Scripts.Enemy
 
             stateMachine.Animator.CrossFadeInFixedTime(ATTACK_ANIMATION_HASH, 
                 ATTACK_TRANSITION_TIME);
+
+            stateMachine.AudioSource.PlayOneShot(stateMachine.SwordSlash);
         }
 
         public override void Tick(float deltaTime)

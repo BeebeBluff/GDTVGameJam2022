@@ -24,6 +24,7 @@ public class PlayerAttackingState : PlayerBaseState
         LookAtMouseClick();
 
         stateMachine.ProjectileHandler.LoadArrow();
+        stateMachine.AudioSource.PlayOneShot(stateMachine.BowSound);
     }
 
     private void LookAtMouseClick()

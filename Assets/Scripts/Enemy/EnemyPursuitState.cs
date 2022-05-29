@@ -16,6 +16,7 @@ namespace Assets.Scripts.Enemy
             base.Enter();
 
             stateMachine.Animator.CrossFadeInFixedTime(RUN_ANIMATION_HASH, RUN_TRANSITION_TIME);
+            stateMachine.AudioSource.PlayOneShot(stateMachine.PursuitSound);
         }
 
         public override void Tick(float deltaTime)

@@ -13,8 +13,11 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float RotationDamping { get; private set; }
     [field: SerializeField] public ProjectileHandler ProjectileHandler { get; private set; }
     [field: SerializeField] public PlayerHealth PlayerHealth { get; private set; }
-    
-    
+    [field: SerializeField] public AudioSource AudioSource { get; private set; }
+    [field: SerializeField] public AudioClip BowSound { get; private set; }
+    [SerializeField] AudioClip deathSound;
+
+
     public LevelManager LevelManager { get; private set; }
 
     public bool IsGrounded => GroundedRayCast.IsGrounded;
@@ -42,6 +45,8 @@ public class PlayerStateMachine : StateMachine
 
     private void PlayerHealth_PlayerDeathEvent()
     {
+        AudioSource.PlayOneShot(deathSound);
+
         SwitchState(new PlayerDeathState(this));
 
         PlayerHealth.PlayerDeathEvent -= PlayerHealth_PlayerDeathEvent;

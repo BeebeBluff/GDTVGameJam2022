@@ -15,6 +15,10 @@ namespace Assets.Scripts.Enemy
 
         [field: SerializeField] public Transform[] Waypoints { get; private set; }
         [field: SerializeField] public Transform Player { get; private set; }
+        [field: SerializeField] public AudioSource AudioSource { get; private set; }
+        [field: SerializeField] public AudioClip SwordSlash { get; private set; }
+        [field: SerializeField] public AudioClip PursuitSound { get; private set; }
+        [SerializeField] AudioClip deathSound;
 
         [field: SerializeField] public float WalkSpeed { get; set; }
         [field: SerializeField] public float RunSpeed { get; set; }
@@ -67,6 +71,8 @@ namespace Assets.Scripts.Enemy
         private void EnemyHealth_DieEvent()
         {
             FindObjectOfType<LevelManager>().EnemyDied();
+            AudioSource.PlayOneShot(deathSound);
+
             SwitchState(new EnemyDeathState(this));
 
             EnemyHealth.DieEvent -= EnemyHealth_DieEvent;
