@@ -29,7 +29,8 @@ namespace Assets.Scripts.Enemy
 
         void Start()
         {
-            FindWaypointTransforms(); //This line and the next are for spawned enemies.
+            //This line and the next are for spawned enemies.
+            Waypoints = FindObjectOfType<WaypointManager>().Waypoints;
             Player = FindObjectOfType<PlayerHealth>().transform;
 
             SwitchState();
@@ -53,19 +54,6 @@ namespace Assets.Scripts.Enemy
             {
                 SwitchState(new EnemyPatrollingState(this));
             }
-        }
-
-        private void FindWaypointTransforms()
-        {
-            Waypoint[] waypointArray =  FindObjectsOfType<Waypoint>();
-            List<Transform> transforms = new List<Transform>();
-
-            for (int i = 0; i < waypointArray.Length; i++)
-            {
-                transforms.Add(waypointArray[i].transform);
-            }
-
-            Waypoints = transforms.ToArray();
         }
 
         private void EnemyHealth_DieEvent()
