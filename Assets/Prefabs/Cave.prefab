@@ -206,6 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e31e139abfd7b4ea797b68d3a299af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnDelay: 8
+  spawnPrefab: {fileID: 3063321539707804606, guid: b6a028b556ec83c439ff21b6a27a2a79, type: 3}
 --- !u!1001 &2308774324469726204
 PrefabInstance:
   m_ObjectHideFlags: 0

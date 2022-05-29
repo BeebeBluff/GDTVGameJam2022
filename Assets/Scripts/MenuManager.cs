@@ -10,9 +10,10 @@ public class MenuManager : MonoBehaviour
     {
         Cursor.visible = true;
     }
-    void Update()
-    {
 
+    public void LoadMenuScene()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void LoadNextScene()
