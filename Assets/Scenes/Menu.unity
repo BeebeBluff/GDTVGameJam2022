@@ -3765,6 +3765,7 @@ MonoBehaviour:
   <IsNecroDead>k__BackingField: 0
   loseScreen: {fileID: 345057453688264024}
   winScreen: {fileID: 351565211804324844}
+  returnToMenuScreen: {fileID: 642501099}
 --- !u!1 &345057454570033823
 GameObject:
   m_ObjectHideFlags: 0

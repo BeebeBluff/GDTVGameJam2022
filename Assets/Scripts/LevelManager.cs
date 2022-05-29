@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] GameObject loseScreen;
     [SerializeField] GameObject winScreen;
+    [SerializeField] GameObject returnToMenuScreen;
 
     float deathDelay = 3f;
 
@@ -18,6 +19,9 @@ public class LevelManager : MonoBehaviour
     {
         loseScreen.SetActive(false);
         winScreen.SetActive(false);
+        returnToMenuScreen.SetActive(false);
+
+        Cursor.visible = false;
     }
     void Update()
     {
@@ -29,6 +33,7 @@ public class LevelManager : MonoBehaviour
             {
                 Time.timeScale = 0;
                 winScreen.SetActive(true);
+                Cursor.visible = true;
             }
         }
     }
@@ -64,14 +69,26 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void ShowReturnToMenuScreen()
+    {
+        returnToMenuScreen.SetActive(true);
+        Cursor.visible = true;
+    }
+
+    public void ResumeGame()
+    {
+        Cursor.visible = false;
+        returnToMenuScreen.SetActive(false);
+    }
+
     public void GamePause()
     {
         Time.timeScale = 0;
-        Debug.Log("Level lost");
 
         //FindObjectOfType<InputReader>().DisableControls();
 
         loseScreen.SetActive(true);
+        Cursor.visible = true;
     }
 
 }

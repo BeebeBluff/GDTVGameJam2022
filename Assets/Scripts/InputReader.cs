@@ -62,4 +62,9 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
         AttackEvent?.Invoke();
     }
+
+    public void OnGoToMenu(InputAction.CallbackContext context)
+    {
+        FindObjectOfType<LevelManager>().ShowReturnToMenuScreen();
+    }
 }
