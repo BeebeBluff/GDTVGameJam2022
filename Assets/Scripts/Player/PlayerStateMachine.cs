@@ -24,6 +24,8 @@ public class PlayerStateMachine : StateMachine
 
     void Start()
     {
+        Time.timeScale = 1; //No clue why I need this here, but it won't work in LevelManager.
+
         MainCameraTransform = Camera.main.transform;
 
         LevelManager = FindObjectOfType<LevelManager>();

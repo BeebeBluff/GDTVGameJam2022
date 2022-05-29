@@ -8,10 +8,29 @@ public class LevelManager : MonoBehaviour
     [field: SerializeField] public int RemainingEnemies { get; private set; }
     [field: SerializeField] public bool IsNecroDead { get; private set; }
 
+    [SerializeField] GameObject loseScreen;
+    [SerializeField] GameObject winScreen;
+
+    float deathDelay = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        loseScreen.SetActive(false);
+        winScreen.SetActive(false);
+    }
+    void Update()
+    {
+        if (RemainingEnemies == 0 && IsNecroDead)
+        {
+            deathDelay -= Time.deltaTime;
+
+            if (deathDelay <= 0f)
+            {
+                Time.timeScale = 0;
+                winScreen.SetActive(true);
+            }
+        }
     }
 
     public void EnemySpawned()
@@ -25,29 +44,34 @@ public class LevelManager : MonoBehaviour
         this.IsNecroDead = isNecroDead;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-
-        if (RemainingEnemies == 0 && IsNecroDead)
-        {
-            //Pause game, load Level Win canvas UI. w/ buttons for Main Menu and next level.
-
-            Debug.Log("Level Won!");
-        }
-    }
-
     public void LoadNextScene()
     {
+        Time.timeScale = 1;
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
 
-    public void ReloadLevel()
+    public void ReloadScene()
     {
-        //pause game, load death canvas with buttons for main menu or replay level.
+        Time.timeScale = 1;
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    public void LoadMenuScene()
+    {
+        Time.timeScale = 1; //Why don't these time.timescale = 1 work?!
+        SceneManager.LoadScene(0);
+    }
+
+    public void GamePause()
+    {
+        Time.timeScale = 0;
         Debug.Log("Level lost");
+
+        //FindObjectOfType<InputReader>().DisableControls();
+
+        loseScreen.SetActive(true);
     }
 
 }

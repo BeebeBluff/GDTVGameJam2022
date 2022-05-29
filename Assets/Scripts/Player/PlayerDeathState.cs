@@ -28,13 +28,15 @@ public class PlayerDeathState : PlayerBaseState
 
         if (deathTransitionDelay <= 0f)
         {
-            stateMachine.LevelManager.ReloadLevel();
+            stateMachine.LevelManager.GamePause();
         }
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        Debug.Log("Goodbye cruel world!");
     }
 
 }

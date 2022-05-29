@@ -10,7 +10,7 @@ public class Necromancer : MonoBehaviour
     {
         SetLimbPhysics(true);
 
-        FindObjectOfType<LevelManager>().NecroDead(true);
+        FindObjectOfType<LevelManager>().NecroDead(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,7 +25,7 @@ public class Necromancer : MonoBehaviour
     {
         gameObject.name = "DeadNecromancer"; //Do this so spawner's won't find it.
 
-        FindObjectOfType<LevelManager>().NecroDead(false);
+        FindObjectOfType<LevelManager>().NecroDead(true);
 
         GetComponent<Animator>().enabled = false;
         SetLimbPhysics(false);

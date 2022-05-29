@@ -22,7 +22,12 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         controls.Player.Enable();
     }
 
-    private void OnDestroy()
+    private void OnDestroy() //this is only called when the level is reloaded or closed.
+    {
+        controls.Player.Disable();
+    }
+
+    public void DisableControls() //to pause the game.
     {
         controls.Player.Disable();
     }
