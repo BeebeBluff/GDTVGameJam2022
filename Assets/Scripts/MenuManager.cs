@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    [SerializeField] GameObject creditsScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +25,16 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
 
-    public void LoadCreditsScene()
+    public void LoadCreditsScreen()
     {
-        //Load Credits Scene or just canvas?
+        if (creditsScreen != null)
+        { creditsScreen.SetActive(true); }
+    }
+
+    public void CloseCreditsScreen()
+    {
+        if (creditsScreen != null)
+        { creditsScreen.SetActive(false); }
     }
 
 }
