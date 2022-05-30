@@ -3599,20 +3599,24 @@ MonoBehaviour:
     Music by Matt Beebe
 
 
-    Fonts from dafont.com:
+    Font from dafont.com:
+
+    Jonesan by Mustofa Nur Sidiq
+
+
+    Font
+    from 1001freefonts.com:
 
     Renneal by Natha Type
 
-    Jonesan
-    by Mustofa Nur Sidiq
 
-
-    Female Player 3D Model by Quaternius at Quaternius.com
+    Female Player 3D Model
+    by Quaternius at Quaternius.com
 
 
 
-    -
-    The game was programmed by Matt Beebe and Cal Aylward.'
+    - The game was programmed by Matt Beebe
+    and Cal Aylward.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
