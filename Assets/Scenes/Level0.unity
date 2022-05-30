@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: ef2d604a811faad4c9f324f3e92edf75, type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 8104fc00c44a64a41954389701d45964, type: 2}
+  m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6943,6 +6943,18 @@ PrefabInstance:
     - target: {fileID: 345057454616482403, guid: efd2e5a3cfe2e1444a348907fb93c0fe, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 345057454616482405, guid: efd2e5a3cfe2e1444a348907fb93c0fe, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 345057454616482405, guid: efd2e5a3cfe2e1444a348907fb93c0fe, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 345057454616482405, guid: efd2e5a3cfe2e1444a348907fb93c0fe, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 345057454616482407, guid: efd2e5a3cfe2e1444a348907fb93c0fe, type: 3}
       propertyPath: m_Pivot.x

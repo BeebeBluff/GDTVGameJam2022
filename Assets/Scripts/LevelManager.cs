@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
         winScreen.SetActive(false);
         returnToMenuScreen.SetActive(false);
 
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
     void Update()
@@ -33,6 +34,7 @@ public class LevelManager : MonoBehaviour
             {
                 Time.timeScale = 0;
                 winScreen.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
         }
@@ -67,17 +69,20 @@ public class LevelManager : MonoBehaviour
     {
         Time.timeScale = 1; //Why don't these time.timescale = 1 work?!
         SceneManager.LoadScene(0);
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void ShowReturnToMenuScreen()
     {
         returnToMenuScreen.SetActive(true);
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void ResumeGame()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         returnToMenuScreen.SetActive(false);
     }
 
@@ -89,6 +94,7 @@ public class LevelManager : MonoBehaviour
 
         loseScreen.SetActive(true);
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
 }
