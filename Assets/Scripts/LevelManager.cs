@@ -20,7 +20,20 @@ public class LevelManager : MonoBehaviour
 
     float deathDelay = 3f;
 
-    // Start is called before the first frame update
+    /*
+    private void Awake()
+    {
+        int numLevelManagers = FindObjectsOfType<LevelManager>().Length;
+        int numMenuManagers = FindObjectsOfType<MenuManager>().Length;
+
+        if (numLevelManagers > 1) //New level was loaded. Restore sensitivity settings.
+        { Destroy(gameObject); }
+        else if (numMenuManagers > 0)
+        { Destroy(gameObject); }
+        else
+        { DontDestroyOnLoad(gameObject); }
+    }*/
+
     void Start()
     {
         loseScreen.SetActive(false);
@@ -30,12 +43,18 @@ public class LevelManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        SetCameraSensitivity();
+    }
+
+    private void SetCameraSensitivity()
+    {
         cinemachineCamera = FindObjectOfType<CinemachineFreeLook>();
         cinemachineCamera.enabled = true; //Just in case.
 
         XSliderMove();
         YSliderMove();
     }
+
     void Update()
     {
         if (RemainingEnemies == 0 && IsNecroDead)
