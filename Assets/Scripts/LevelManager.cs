@@ -1,7 +1,9 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -11,6 +13,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject loseScreen;
     [SerializeField] GameObject winScreen;
     [SerializeField] GameObject returnToMenuScreen;
+
+    [SerializeField] private Slider xSlider;
+    [SerializeField] private Slider ySlider;
+    private CinemachineFreeLook cinemachineCamera;
 
     float deathDelay = 3f;
 
@@ -23,6 +29,12 @@ public class LevelManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        cinemachineCamera = FindObjectOfType<CinemachineFreeLook>();
+        cinemachineCamera.enabled = true; //Just in case.
+
+        XSliderMove();
+        YSliderMove();
     }
     void Update()
     {
@@ -34,10 +46,28 @@ public class LevelManager : MonoBehaviour
             {
                 Time.timeScale = 0;
                 winScreen.SetActive(true);
+                cinemachineCamera.enabled = false;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
         }
+    }
+
+    private void XSliderMove()
+    {
+        xSlider.onValueChanged.AddListener((v) =>
+        {
+            cinemachineCamera.m_XAxis.m_MaxSpeed = v;
+        });
+
+    }
+
+    private void YSliderMove()
+    {
+        ySlider.onValueChanged.AddListener((v) =>
+        {
+            cinemachineCamera.m_YAxis.m_MaxSpeed = v;
+        });
     }
 
     public void EnemySpawned()
@@ -54,6 +84,7 @@ public class LevelManager : MonoBehaviour
     public void LoadNextScene()
     {
         Time.timeScale = 1;
+        cinemachineCamera.enabled = true;
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
@@ -61,6 +92,7 @@ public class LevelManager : MonoBehaviour
     public void ReloadScene()
     {
         Time.timeScale = 1;
+        cinemachineCamera.enabled = true;
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }
@@ -75,22 +107,27 @@ public class LevelManager : MonoBehaviour
     public void ShowReturnToMenuScreen()
     {
         returnToMenuScreen.SetActive(true);
+        cinemachineCamera.enabled = false;
+        FindObjectOfType<InputReader>().DisableControls();
+        Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
     public void ResumeGame()
     {
+        cinemachineCamera.enabled = true;
+        FindObjectOfType<InputReader>().EnableControls();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1;
         returnToMenuScreen.SetActive(false);
     }
 
     public void GamePause()
     {
         Time.timeScale = 0;
-
-        //FindObjectOfType<InputReader>().DisableControls();
+        cinemachineCamera.enabled = false;
 
         loseScreen.SetActive(true);
         Cursor.visible = true;

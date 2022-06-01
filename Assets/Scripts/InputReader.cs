@@ -27,6 +27,11 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         controls.Player.Disable();
     }
 
+    public void EnableControls() //to resume the game.
+    {
+        controls.Player.Enable();
+    }
+
     public void DisableControls() //to pause the game.
     {
         controls.Player.Disable();
